@@ -27,7 +27,9 @@ class Repository;
 class SvnPrivate;
 class Svn
 {
+     
 public:
+    
     static void initialize();
 
     Svn(const QString &pathToRepository);
@@ -42,6 +44,7 @@ public:
     bool exportRevision(int revnum);
 
 private:
+    
     SvnPrivate * const d;
 };
 

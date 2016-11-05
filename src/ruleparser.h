@@ -27,13 +27,16 @@
 
 class Rules
 {
+    
 public:
+    
     struct Rule
     {
         QString filename;
         int lineNumber;
         Rule() : lineNumber(0) {}
     };
+    
     struct Repository : Rule
     {
         struct Branch
@@ -49,16 +52,17 @@ public:
         QString prefix;
 
         Repository() { }
-        const QString info() const {
+        const QString info() const 
+        {
             const QString info = Rule::filename % ":" % QByteArray::number(Rule::lineNumber);
             return info;
         }
-
     };
 
     struct Match : Rule
     {
-        struct Substitution {
+        struct Substitution 
+        {
             QRegExp pattern;
             QString replacement;
 
@@ -76,19 +80,27 @@ public:
         int maxRevision;
         bool annotate;
 
-        enum Action {
+        enum Action 
+        {
             Ignore,
             Export,
             Recurse
         } action;
 
         Match() : minRevision(-1), maxRevision(-1), annotate(false), action(Ignore) { }
-        bool operator<(const Match other) const {
+        
+        bool operator<(const Match other) const 
+        {
             if (filename != other.filename)
+            {
                 return filename < other.filename;
+            }
+            
             return lineNumber < other.lineNumber;
         }
-        const QString info() const {
+        
+        const QString info() const 
+        {
             const QString info = Rule::filename % ":" % QByteArray::number(Rule::lineNumber) % " " % rx.pattern();
             return info;
         }
@@ -103,6 +115,7 @@ public:
     void load();
 
 private:
+    
     void load(const QString &filename);
     QString filename;
     QList<Repository> m_repositories;
@@ -112,7 +125,9 @@ private:
 
 class RulesList
 {
+    
 public:
+    
   RulesList( const QString &filenames);
   ~RulesList();
 
@@ -122,6 +137,7 @@ public:
   void load();
 
 private:
+    
   QString m_filenames;
   QList<Rules*> m_rules;
   QList<Rules::Repository> m_allrepositories;
@@ -130,7 +146,9 @@ private:
 
 class Stats
 {
+    
 public:
+    
     static Stats *instance();
     void printStats() const;
     void ruleMatched(const Rules::Match &rule, const int rev = -1);
@@ -139,6 +157,7 @@ public:
     ~Stats();
 
 private:
+    
     Stats();
     class Private;
     Private * const d;
