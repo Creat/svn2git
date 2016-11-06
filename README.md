@@ -2,7 +2,7 @@ svn-all-fast-export aka svn2git
 ===============================
 This project contains all the tools required to do a conversion of an svn repository (server side, not a checkout) to one or more git repositories.
 
-This is the tool used to convert KDE's Subversion into multiple Git repositories.  You can find more description and usage examples at https://techbase.kde.org/Projects/MoveToGit/UsingSvn2Git
+You can find more description and usage examples at https://techbase.kde.org/Projects/MoveToGit/UsingSvn2Git
 
 
 How does it work
@@ -18,8 +18,7 @@ After it is done you likely want to run `git repack -a -d -f` to compress the pa
 
 Building the tool
 -----------------
-Run `qmake && make`.  You get `./svn-all-fast-export`.
-(Do a checkout of the repo .git' and run qmake and make. You can only build it after having installed libsvn-dev, and naturally Qt. Running the command will give you all the options you can pass to the tool.)
+Create a folder (e.g. build) that houses your build data. Change into it and run `cmake ../` (you can attach IDE specific instructions if you want). This will get you the platform specific build files. After that just run `make` or open the created project with your IDE of choice to generate the `svn-all-fast-export` binary file. Dependencies are Subversion, Qt and the Apr development files as well as the git binary to compile and the libraries / binaries of the same projects to run the conversion.
 
 KDE
 ---

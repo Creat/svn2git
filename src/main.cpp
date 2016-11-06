@@ -232,7 +232,7 @@ int main(int argc, char **argv)
     
     if(args->contains(QLatin1String("version"))) 
     {
-        printf("Git version: %s\n", VER);
+        printf("Git version: %s\n", CURRENT_VERSION);
         return 0;
     }
     
