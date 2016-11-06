@@ -204,6 +204,7 @@ static const CommandLineOption options[] =
     {"--create-dump", "don't create the repository but a dump file suitable for piping into fast-import"},
     {"--debug-rules", "print what rule is being used for each file"},
     {"--commit-interval NUMBER", "if passed the cache will be flushed to git every NUMBER of commits"},
+    {"--max-packsize NUMBER", "maximum pack file size (e.g. 512m) at which a checkpoint is created automatically. Default is unlimited (see commit-interval)."},
     {"--stats", "after a run print some statistics about the rules"},
     {"--svn-branches", "Use the contents of SVN when creating branches, Note: SVN tags are branches as well"},
     {"--empty-dirs", "Add .gitignore-file for empty dirs"},

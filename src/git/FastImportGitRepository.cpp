@@ -654,6 +654,8 @@ void FastImportGitRepository::startFastImport()
             qFatal("git-fast-import has been started once and crashed?");
         }
         
+        const QString maxPackSize = CommandLineParser::instance()->optionArgument(QLatin1String("max-packsize"), QLatin1String(""));
+        
         processHasStarted = true;
 
         // start the process
@@ -662,6 +664,11 @@ void FastImportGitRepository::startFastImport()
         marksOptions << "--import-marks=" + marksFile;
         marksOptions << "--export-marks=" + marksFile;
         marksOptions << "--force";
+        
+        if (!maxPackSize.isEmpty())
+        {
+            marksOptions << "--max-pack-size=" + maxPackSize;
+        }
 
         fastImport.setStandardOutputFile(logFileName(name), QIODevice::Append);
         fastImport.setProcessChannelMode(QProcess::MergedChannels);
