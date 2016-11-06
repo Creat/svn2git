@@ -37,8 +37,10 @@ public:
     int deleteBranch(const QString &branch, int revnum);
     GitRepositoryTransaction *newTransaction(const QString &branch, const QString &svnprefix, int revnum);
     void createAnnotatedTag(const QString &name, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log);
+    
     void finalizeTags();
     void commit();
+    
     bool branchExists(const QString& branch) const;
     const QByteArray branchNote(const QString& branch) const;
     void setBranchNote(const QString& branch, const QByteArray& noteText);

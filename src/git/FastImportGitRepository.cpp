@@ -279,10 +279,15 @@ void FastImportGitRepository::closeFastImport()
     if (fastImport.state() != QProcess::NotRunning) 
     {
         fastImport.write("checkpoint\n");
-        fastImport.waitForBytesWritten(-1);
+        
+        if (!fastImport.waitForBytesWritten(-1))
+        {
+            qWarning() << "WARN: git-fast-import for repository" << name << "failed for final checkpoint!";   
+        }
+        
         fastImport.closeWriteChannel();
-    
-        if (!fastImport.waitForFinished()) 
+        
+        if (!fastImport.waitForFinished())
         {
             fastImport.terminate();
             

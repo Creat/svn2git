@@ -36,7 +36,8 @@
 #include <limits.h>
 #include <stdio.h>
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineOption.h"
+#include "commandline/CommandLineParser.h"
 
 #include "rules/RuleStats.h"
 #include "rules/RuleList.h"

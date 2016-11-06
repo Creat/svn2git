@@ -19,7 +19,6 @@ int ForwardingGitRepository::setupIncremental(int &)
     
 void ForwardingGitRepository::restoreLog() 
 {
-    
 }
 
 void ForwardingGitRepository::reloadBranches() 
