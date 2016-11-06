@@ -24,11 +24,29 @@ INCLUDEPATH += . $$SVN_INCLUDE $$APR_INCLUDE
 LIBS += -lsvn_fs-1 -lsvn_repos-1 -lapr-1 -lsvn_subr-1
 
 # Input
-SOURCES += ruleparser.cpp \
-    repository.cpp \
-    svn.cpp \
-    main.cpp \
-    CommandLineParser.cpp \
+SOURCES += main.cpp \
+    rules/Rule.cpp \
+    rules/Rules.cpp \
+    rules/RuleList.cpp \
+    rules/RuleStats.cpp \
+    rules/RuleMatch.cpp \
+    rules/RuleRepository.cpp \
+    rules/RuleStatsPrivate.cpp \
+    rules/RuleMatchSubstitution.cpp \
+    logging/LoggingQProcess.cpp \
+    git/GitProcessCache.cpp \
+    git/GitRepository.cpp \
+    git/ForwardingGitRepository.cpp \
+    git/FastImportGitRepository.cpp \
+    git/GitRepositoryTransaction.cpp \
+    git/ForwardingGitRepositoryTransaction.cpp \
+    git/FastImportGitRepositoryTransaction.cpp \
+    svn/AprAutoPool.cpp \
+    svn/Svn.cpp \
+    svn/SvnHelper.cpp \
+    svn/SvnPrivate.cpp \
+    svn/SvnRevision.cpp \
+        CommandLineParser.cpp \
 
 HEADERS += ruleparser.h \
     repository.h \

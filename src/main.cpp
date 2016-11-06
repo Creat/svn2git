@@ -15,6 +15,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _XOPEN_SOURCE
+    #define _XOPEN_SOURCE
+#endif
+
+#ifndef _LARGEFILE_SUPPORT
+    #define _LARGEFILE_SUPPORT
+#endif
+
+#ifndef _LARGEFILE64_SUPPORT
+    #define _LARGEFILE64_SUPPORT
+#endif
+
 #include <QCoreApplication>
 #include <QFile>
 #include <QStringList>
@@ -25,9 +37,13 @@
 #include <stdio.h>
 
 #include "CommandLineParser.h"
-#include "ruleparser.h"
-#include "repository.h"
-#include "svn.h"
+
+#include "rules/RuleStats.h"
+#include "rules/RuleList.h"
+
+#include "git/GitRepository.h"
+
+#include "svn/Svn.h"
 
 QHash<QByteArray, QByteArray> loadIdentityMapFile(const QString &fileName)
 {
@@ -209,7 +225,7 @@ int main(int argc, char **argv)
     printf("'\n");
     CommandLineParser::init(argc, argv);
     CommandLineParser::addOptionDefinitions(options);
-    Stats::init();
+    RuleStats::init();
     CommandLineParser *args = CommandLineParser::instance();
     
     if(args->contains(QLatin1String("version"))) 
@@ -260,25 +276,29 @@ int main(int argc, char **argv)
 
     QCoreApplication app(argc, argv);
     // Load the configuration
-    RulesList rulesList(args->optionArgument(QLatin1String("rules")));
-    rulesList.load();
+    RuleList ruleList(args->optionArgument(QLatin1String("rules")));
+    ruleList.load();
 
     int resume_from = args->optionArgument(QLatin1String("resume-from")).toInt();
     int max_rev = args->optionArgument(QLatin1String("max-rev")).toInt();
 
     // create the repository list
-    QHash<QString, Repository *> repositories;
+    QHash<QString, GitRepository*> repositories;
 
     int cutoff = resume_from ? resume_from : INT_MAX;
     
  retry:
     int min_rev = 1;
-    foreach (Rules::Repository rule, rulesList.allRepositories()) 
+    foreach (RuleRepository rule, ruleList.getAllRepositories()) 
     {
-        Repository *repo = createRepository(rule, repositories);
+        GitRepository *repo = GitRepository::createRepository(rule, repositories);
+        
         if (!repo)
+        {
             return EXIT_FAILURE;
-        repositories.insert(rule.name, repo);
+        }
+        
+        repositories.insert(rule.getName(), repo);
 
         int repo_next = repo->setupIncremental(cutoff);
 
@@ -330,9 +350,10 @@ int main(int argc, char **argv)
 
     Svn::initialize();
     Svn svn(args->arguments().first());
-    svn.setMatchRules(rulesList.allMatchRules());
+    svn.setMatchRules(ruleList.getAllMatchRules());
     svn.setRepositories(repositories);
     svn.setIdentityMap(loadIdentityMapFile(args->optionArgument("identity-map")));
+   
     // Massage user input a little, no guarantees that input makes sense.
     QString domain = args->optionArgument("identity-domain").simplified().remove(QChar('@'));
     
@@ -374,12 +395,12 @@ int main(int argc, char **argv)
         }
     }
 
-    foreach (Repository *repo, repositories) 
+    foreach (GitRepository* repo, repositories) 
     {
         repo->finalizeTags();
         delete repo;
     }
     
-    Stats::instance()->printStats();
+    RuleStats::instance()->printStats();
     return errors ? EXIT_FAILURE : EXIT_SUCCESS;
 }

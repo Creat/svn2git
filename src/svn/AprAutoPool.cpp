@@ -1,5 +1,6 @@
 /*
  *  Copyright (C) 2007  Thiago Macieira <thiago@kde.org>
+ *  Copyright (C) 2016  Daniel Dewald <daniel.dewald@innogames.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,37 +16,14 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SVN_H
-#define SVN_H
+#include "AprAutoPool.h"
 
-#include <QHash>
-#include <QList>
-#include "ruleparser.h"
-
-class Repository;
-
-class SvnPrivate;
-class Svn
+AprAutoPool::AprAutoPool::AprAutoPool(const AprAutoPool&)
 {
-     
-public:
-    
-    static void initialize();
+}
 
-    Svn(const QString &pathToRepository);
-    ~Svn();
+AprAutoPool& AprAutoPool::operator=(const AprAutoPool&)
+{
+    return *this;
+}
 
-    void setMatchRules(const QList<QList<Rules::Match> > &matchRules);
-    void setRepositories(const QHash<QString, Repository *> &repositories);
-    void setIdentityMap(const QHash<QByteArray, QByteArray> &identityMap);
-    void setIdentityDomain(const QString &identityDomain);
-
-    int youngestRevision();
-    bool exportRevision(int revnum);
-
-private:
-    
-    SvnPrivate * const d;
-};
-
-#endif
