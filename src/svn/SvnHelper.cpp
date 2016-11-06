@@ -33,7 +33,7 @@
 
 #include "git/GitRepositoryTransaction.h"
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineParser.h"
 
 QList<RuleMatch>::ConstIterator SvnHelper::findMatchRule(const QList<RuleMatch>& matchRules, int revnum, const QString& current, int ruleMask)
 {

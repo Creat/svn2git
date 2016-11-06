@@ -25,6 +25,10 @@ LIBS += -lsvn_fs-1 -lsvn_repos-1 -lapr-1 -lsvn_subr-1
 
 # Input
 SOURCES += main.cpp \
+    commandline/OptionDefinition.cpp \
+    commandline/OptionProcessor.cpp \
+    commandline/CommandLineParser.cpp \
+    commandline/CommandLineParserPrivate.cpp \
     rules/Rule.cpp \
     rules/Rules.cpp \
     rules/RuleList.cpp \
@@ -45,10 +49,33 @@ SOURCES += main.cpp \
     svn/Svn.cpp \
     svn/SvnHelper.cpp \
     svn/SvnPrivate.cpp \
-    svn/SvnRevision.cpp \
-        CommandLineParser.cpp \
+    svn/SvnRevision.cpp 
 
-HEADERS += ruleparser.h \
-    repository.h \
-    svn.h \
-    CommandLineParser.h \
+HEADERS += rules/RuleStats.h \
+    rules/RuleMatch.h \
+    rules/Rule.h \
+    rules/RuleList.h \
+    rules/RuleMatchSubstitution.h \
+    rules/RuleMatchAction.h \
+    rules/RuleStatsPrivate.h \
+    rules/Rules.h \
+    rules/RuleRepository.h \
+    commandline/OptionProcessor.h \
+    commandline/ParsedOption.h \
+    commandline/OptionDefinition.h \
+    commandline/CommandLineParserPrivate.h \
+    commandline/CommandLineOption.h \
+    commandline/CommandLineParser.h \
+    git/ForwardingGitRepository.h \
+    git/FastImportGitRepositoryTransaction.h \
+    git/GitProcessCache.h \
+    git/ForwardingGitRepositoryTransaction.h \
+    git/FastImportGitRepository.h \
+    git/GitRepository.h \
+    git/GitRepositoryTransaction.h \
+    logging/LoggingQProcess.h \
+    svn/AprAutoPool.h \
+    svn/SvnHelper.h \
+    svn/SvnRevision.h \
+    svn/SvnPrivate.h \
+    svn/Svn.h

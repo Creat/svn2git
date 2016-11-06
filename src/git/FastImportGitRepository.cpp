@@ -4,8 +4,8 @@
 #include <QDebug>
 
 #include "GitProcessCache.h"
-#include "CommandLineParser.h"
 #include "rules/RuleRepository.h"
+#include "commandline/CommandLineParser.h"
 #include "FastImportGitRepositoryTransaction.h"
 
 FastImportGitRepository::FastImportGitRepository(const RuleRepository &rule) :

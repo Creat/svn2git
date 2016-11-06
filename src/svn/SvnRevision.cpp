@@ -32,7 +32,7 @@
 
 #include "SvnHelper.h"
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineParser.h"
 
 SvnRevision::SvnRevision(int revision, svn_fs_t* f, apr_pool_t* parent_pool) : 
     pool(parent_pool), 

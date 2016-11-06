@@ -1,6 +1,6 @@
 #include "LoggingQProcess.h"
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineParser.h"
 
 LoggingQProcess::LoggingQProcess(const QString filename) : QProcess(), log() 
 {

@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineParser.h"
 
 FastImportGitRepositoryTransaction::~FastImportGitRepositoryTransaction()
 {

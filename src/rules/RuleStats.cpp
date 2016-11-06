@@ -1,7 +1,7 @@
 #include "RuleStats.h"
 #include "RuleStatsPrivate.h"
 
-#include "CommandLineParser.h"
+#include "commandline/CommandLineParser.h"
 
 RuleStats *RuleStats::self = 0;
 
