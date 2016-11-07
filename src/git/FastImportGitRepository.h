@@ -54,7 +54,7 @@ public:
     GitRepositoryTransaction* newTransaction(const QString &branch, const QString &svnprefix, int revnum);
     void createAnnotatedTag(const QString &name, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log);
     
-	void close();
+    void close();
     void finalizeTags();
     void commit();
     
@@ -81,6 +81,7 @@ private:
     static QString logFileName(QString name);
     static unsigned long long lastValidMark(QString name);
 
+    void doCheckpoint();
     void startFastImport();
     void closeFastImport();
 

@@ -273,24 +273,53 @@ void FastImportGitRepository::restoreLog()
     QFile::rename(bkup, file);
 }
 
+void FastImportGitRepository::doCheckpoint()
+{
+    qDebug() << "checkpoint!, marks file trunkated" << endl;
+    fastImport.write("checkpoint\n");
+    fastImport.waitForBytesWritten(-1);
+    
+    fastImport.write("progress complete\n");
+    fastImport.waitForBytesWritten(-1);
+    
+    fastImport.waitForReadyRead(-1);
+    const QByteArray result = fastImport.readAll();
+    
+    if (!result.contains("complete"))
+    {
+        qDebug() << "checkpoint not completed properly!" << endl;
+    }
+    
+    qDebug() << "checkpoint done!" << endl;
+}
+
 void FastImportGitRepository::closeFastImport()
 {
     if (fastImport.state() != QProcess::NotRunning) 
     {
-        fastImport.write("checkpoint\n");
+        doCheckpoint();
         
-        if (!fastImport.waitForBytesWritten(-1))
-        {
-            qWarning() << "WARN: git-fast-import for repository" << name << "failed for final checkpoint!";   
-        }
-        
+        // Give the signal to close up shop.
+        fastImport.write("done\n");
         fastImport.closeWriteChannel();
         
-        if (!fastImport.waitForFinished())
+        fastImport.write("progress complete\n");
+        fastImport.waitForBytesWritten(-1);
+    
+        fastImport.waitForReadyRead(-1);
+        const QByteArray result = fastImport.readAll();
+    
+        if (!result.contains("complete"))
+        {
+            qDebug() << "Data stream not properly closed!" << endl;
+        }
+        
+        // Wait at least one more minute for closure.
+        if (!fastImport.waitForFinished(60000))
         {
             fastImport.terminate();
             
-            if (!fastImport.waitForFinished(200))
+            if (!fastImport.waitForFinished(30000))
             {
                 qWarning() << "WARN: git-fast-import for repository" << name << "did not die";
             }
@@ -492,8 +521,7 @@ GitRepositoryTransaction* FastImportGitRepository::newTransaction(const QString 
         startFastImport();
         
         // write everything to disk every 10000 commits
-        fastImport.write("checkpoint\n");
-        qDebug() << "checkpoint!, marks file trunkated";
+        doCheckpoint();
     }
     
     outstandingTransactions++;
