@@ -46,7 +46,7 @@ void ForwardingGitRepository::createAnnotatedTag(const QString &name, const QStr
     repo->createAnnotatedTag(name, svnprefix, revnum, author, dt, log); 
 }
 
-void close()
+void ForwardingGitRepository::close()
 {
 	/* Nothing to do */	
 }
