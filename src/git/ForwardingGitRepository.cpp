@@ -5,7 +5,6 @@ ForwardingGitRepository::ForwardingGitRepository(const QString &n, GitRepository
     repo(r), 
     prefix(p) 
 {
-    
 }
 
 ForwardingGitRepository::~ForwardingGitRepository()
@@ -45,6 +44,11 @@ GitRepositoryTransaction* ForwardingGitRepository::newTransaction(const QString 
 void ForwardingGitRepository::createAnnotatedTag(const QString &name, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log) 
 { 
     repo->createAnnotatedTag(name, svnprefix, revnum, author, dt, log); 
+}
+
+void close()
+{
+	/* Nothing to do */	
 }
 
 void ForwardingGitRepository::finalizeTags() 

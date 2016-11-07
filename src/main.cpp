@@ -396,12 +396,14 @@ int main(int argc, char **argv)
             break;
         }
     }
-
+	
     foreach (GitRepository* repo, repositories) 
     {
         repo->finalizeTags();
         delete repo;
     }
+	
+	repo->Close();
     
     RuleStats::instance()->printStats();
     return errors ? EXIT_FAILURE : EXIT_SUCCESS;

@@ -65,7 +65,6 @@ FastImportGitRepository::FastImportGitRepository(const RuleRepository &rule) :
 FastImportGitRepository::~FastImportGitRepository()
 {
     Q_ASSERT(outstandingTransactions == 0);
-    closeFastImport();
 }
 
 QString FastImportGitRepository::marksFileName(QString name)
@@ -535,6 +534,11 @@ void FastImportGitRepository::createAnnotatedTag(const QString &ref, const QStri
     tag.author = author;
     tag.log = log;
     tag.dt = dt;
+}
+
+void FastImportGitRepository::close()
+{
+	closeFastImport();
 }
 
 void FastImportGitRepository::finalizeTags()

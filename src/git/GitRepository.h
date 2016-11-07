@@ -46,6 +46,7 @@ public:
 
     virtual void createAnnotatedTag(const QString &name, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log) = 0;
     
+	virtual void close();
     virtual void finalizeTags() = 0;
     virtual void commit() = 0;
 
