@@ -279,17 +279,6 @@ void FastImportGitRepository::doCheckpoint()
     fastImport.write("checkpoint\n");
     fastImport.waitForBytesWritten(-1);
     
-    fastImport.write("progress complete\n");
-    fastImport.waitForBytesWritten(-1);
-    
-    fastImport.waitForReadyRead(-1);
-    const QByteArray result = fastImport.readAll();
-    
-    if (!result.contains("complete"))
-    {
-        qDebug() << "checkpoint not completed properly!" << endl;
-    }
-    
     qDebug() << "checkpoint done!" << endl;
 }
 
@@ -302,17 +291,6 @@ void FastImportGitRepository::closeFastImport()
         // Give the signal to close up shop.
         fastImport.write("done\n");
         fastImport.closeWriteChannel();
-        
-        fastImport.write("progress complete\n");
-        fastImport.waitForBytesWritten(-1);
-    
-        fastImport.waitForReadyRead(-1);
-        const QByteArray result = fastImport.readAll();
-    
-        if (!result.contains("complete"))
-        {
-            qDebug() << "Data stream not properly closed!" << endl;
-        }
         
         // Wait at least one more minute for closure.
         if (!fastImport.waitForFinished(60000))
