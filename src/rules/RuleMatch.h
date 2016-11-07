@@ -35,7 +35,7 @@ public:
 
     RuleMatch();
 
-    bool operator<(const RuleMatch other) const;
+    bool operator<(const RuleMatch& other) const;
     const QString info() const;
     
     QRegExp rx;
@@ -52,7 +52,7 @@ public:
 
 #ifndef QT_NO_DEBUG_STREAM
 class QDebug;
-QDebug operator<<(QDebug, const RuleMatch &);
+QDebug operator<<(QDebug, const RuleMatch&);
 #endif
 
 

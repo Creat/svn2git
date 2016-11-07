@@ -27,7 +27,7 @@
 
 #include "CommandLineParserPrivate.h"
 
-CommandLineParser *CommandLineParser::self = 0;
+CommandLineParser* CommandLineParser::self = 0;
 
 // static
 void CommandLineParser::init(int argc, char** argv)
@@ -71,7 +71,7 @@ void CommandLineParser::setArgumentDefinition(const char* definition)
 }
 
 
-CommandLineParser::CommandLineParser(int argc, char **argv) : 
+CommandLineParser::CommandLineParser(int argc, char** argv) : 
     d(new CommandLineParserPrivate(argc, argv))
 {
 }
@@ -81,7 +81,7 @@ CommandLineParser::~CommandLineParser()
     delete d;
 }
 
-void CommandLineParser::usage(const QString &name, const QString &argumentDescription)
+void CommandLineParser::usage(const QString& name, const QString& argumentDescription)
 {
     QTextStream cout(stdout, QIODevice::WriteOnly);
     cout << "Usage: " << d->argumentStrings[0];
@@ -144,7 +144,7 @@ QStringList CommandLineParser::options() const
     return d->options.keys();
 }
 
-bool CommandLineParser::contains(const QString & key) const
+bool CommandLineParser::contains(const QString& key) const
 {
     d->parse();
     return d->options.contains(key);
@@ -162,7 +162,7 @@ QStringList CommandLineParser::undefinedOptions() const
     return d->undefinedOptions;
 }
 
-QString CommandLineParser::optionArgument(const QString &optionName, const QString &defaultValue) const
+QString CommandLineParser::optionArgument(const QString& optionName, const QString& defaultValue) const
 {
     QStringList answer = optionArguments(optionName);
     
@@ -174,7 +174,7 @@ QString CommandLineParser::optionArgument(const QString &optionName, const QStri
     return answer.first();
 }
 
-QStringList CommandLineParser::optionArguments(const QString &optionName) const
+QStringList CommandLineParser::optionArguments(const QString& optionName) const
 {
     if (! contains(optionName))
     {

@@ -26,7 +26,7 @@ const QList<RuleMatch> Rules::getMatchRules() const
     return matchRules;
 }
 
-RuleMatchSubstitution Rules::parseSubstitution(const QString &string)
+const RuleMatchSubstitution Rules::parseSubstitution(const QString& string)
 {
     if (string.at(0) != 's' || string.length() < 5)
     {
@@ -90,7 +90,7 @@ void Rules::load()
     load(filename);
 }
 
-void Rules::load(const QString &filename)
+void Rules::load(const QString& filename)
 {
     qDebug() << "Loading rules from" << filename;
     

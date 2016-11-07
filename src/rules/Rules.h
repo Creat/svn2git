@@ -37,7 +37,7 @@ public:
 
     const QList<RuleRepository> getRepositories() const;
     const QList<RuleMatch> getMatchRules() const;
-    RuleMatchSubstitution parseSubstitution(const QString &string);
+    const RuleMatchSubstitution parseSubstitution(const QString &string);
     void load();
 
 private:

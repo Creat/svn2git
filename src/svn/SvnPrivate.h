@@ -39,12 +39,12 @@ class SvnPrivate
     
 public:
     
-    SvnPrivate(const QString &pathToRepository);
+    SvnPrivate(const QString& pathToRepository);
     ~SvnPrivate();
     
     int youngestRevision();
     int exportRevision(int revnum);
-    int openRepository(const QString &pathToRepository);
+    int openRepository(const QString& pathToRepository);
     
     QList<QList<RuleMatch> > allMatchRules;
     QHash<QString, GitRepository*> repositories;

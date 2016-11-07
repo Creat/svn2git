@@ -46,9 +46,9 @@ public:
     static int pathMode(svn_fs_root_t* fs_root, const char *pathname, apr_pool_t* pool);
     svn_error_t* deviceWrite(void* baton, const char* data, apr_size_t* len); 
     static svn_stream_t* streamForDevice(QIODevice* device, apr_pool_t* pool);
-    static int dumpBlob(GitRepositoryTransaction* txn, svn_fs_root_t* fs_root, const char* pathname, const QString &finalPathName, apr_pool_t* pool);
+    static int dumpBlob(GitRepositoryTransaction* txn, svn_fs_root_t* fs_root, const char* pathname, const QString& finalPathName, apr_pool_t* pool);
     static int recursiveDumpDir(GitRepositoryTransaction* txn, svn_fs_root_t* fs_root, const QByteArray &pathname, const QString &finalPathName, apr_pool_t* pool);
-    static bool wasDir(svn_fs_t* fs, int revnum, const char *pathname, apr_pool_t* pool);
+    static bool wasDir(svn_fs_t* fs, int revnum, const char* pathname, apr_pool_t* pool);
     static time_t getEpoch(const char* svn_date);
     static svn_error_t* QIODevice_write(void* baton, const char* data, apr_size_t* len);
 };

@@ -27,16 +27,16 @@ class LoggingQProcess : public QProcess
    
 public:
     
-    LoggingQProcess(const QString filename);
+    LoggingQProcess(const QString& filename);
     ~LoggingQProcess();
     
-    qint64 write(const char *data);
-    qint64 write(const char *data, qint64 length);
-    qint64 write(const QByteArray &data);
-    qint64 writeNoLog(const char *data);
-    qint64 writeNoLog(const char *data, qint64 length);
-    qint64 writeNoLog(const QByteArray &data);
-    bool putChar( char c);
+    qint64 write(const char* data);
+    qint64 write(const char* data, qint64 length);
+    qint64 write(const QByteArray& data);
+    qint64 writeNoLog(const char* data);
+    qint64 writeNoLog(const char* data, qint64 length);
+    qint64 writeNoLog(const QByteArray& data);
+    bool putChar(char c);
     
 private:
     

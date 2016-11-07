@@ -15,7 +15,7 @@ RuleMatch::RuleMatch() :
     
 }
         
-bool RuleMatch::operator<(const RuleMatch other) const 
+bool RuleMatch::operator<(const RuleMatch& other) const 
 {
     if (filename != other.filename)
     {

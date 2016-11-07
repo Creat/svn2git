@@ -30,21 +30,21 @@ class ForwardingGitRepositoryTransaction : public GitRepositoryTransaction
 
 public:
         
-    ForwardingGitRepositoryTransaction(GitRepositoryTransaction *t, const QString &p);
+    ForwardingGitRepositoryTransaction(GitRepositoryTransaction* t, const QString& p);
     ~ForwardingGitRepositoryTransaction();
     
     void commit();
-    void setAuthor(const QByteArray &author);
+    void setAuthor(const QByteArray& author);
     void setDateTime(uint dt);
-    void setLog(const QByteArray &log);
-    void noteCopyFromBranch (const QString &prevbranch, int revFrom);
-    void deleteFile(const QString &path);
-    QIODevice *addFile(const QString &path, int mode, qint64 length);
-    void commitNote(const QByteArray &noteText, bool append, const QByteArray &commit);
+    void setLog(const QByteArray& log);
+    void noteCopyFromBranch (const QString& prevbranch, int revFrom);
+    void deleteFile(const QString& path);
+    QIODevice* addFile(const QString& path, int mode, qint64 length);
+    void commitNote(const QByteArray& noteText, bool append, const QByteArray& commit);
 
 private:
     
-    GitRepositoryTransaction *txn;
+    GitRepositoryTransaction* txn;
     QString prefix;
 };
 

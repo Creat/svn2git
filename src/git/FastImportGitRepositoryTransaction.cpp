@@ -9,7 +9,7 @@ FastImportGitRepositoryTransaction::~FastImportGitRepositoryTransaction()
     repository->forgetTransaction(this);
 }
 
-void FastImportGitRepositoryTransaction::setAuthor(const QByteArray &a)
+void FastImportGitRepositoryTransaction::setAuthor(const QByteArray& a)
 {
     author = a;
 }
@@ -19,12 +19,12 @@ void FastImportGitRepositoryTransaction::setDateTime(uint dt)
     datetime = dt;
 }
 
-void FastImportGitRepositoryTransaction::setLog(const QByteArray &l)
+void FastImportGitRepositoryTransaction::setLog(const QByteArray& l)
 {
     log = l;
 }
 
-void FastImportGitRepositoryTransaction::noteCopyFromBranch(const QString &branchFrom, int branchRevNum)
+void FastImportGitRepositoryTransaction::noteCopyFromBranch(const QString& branchFrom, int branchRevNum)
 {
     if(branch == branchFrom) 
     {
@@ -61,7 +61,7 @@ void FastImportGitRepositoryTransaction::noteCopyFromBranch(const QString &branc
     }
 }
 
-void FastImportGitRepositoryTransaction::deleteFile(const QString &path)
+void FastImportGitRepositoryTransaction::deleteFile(const QString& path)
 {
     QString pathNoSlash = repository->prefix + path;
     
@@ -73,7 +73,7 @@ void FastImportGitRepositoryTransaction::deleteFile(const QString &path)
     deletedFiles.append(pathNoSlash);
 }
 
-QIODevice *FastImportGitRepositoryTransaction::addFile(const QString &path, int mode, qint64 length)
+QIODevice* FastImportGitRepositoryTransaction::addFile(const QString& path, int mode, qint64 length)
 {
     unsigned long long mark = repository->next_file_mark--;
 
@@ -106,7 +106,7 @@ QIODevice *FastImportGitRepositoryTransaction::addFile(const QString &path, int 
     return &repository->fastImport;
 }
 
-void FastImportGitRepositoryTransaction::commitNote(const QByteArray &noteText, bool append, const QByteArray &commit = QByteArray())
+void FastImportGitRepositoryTransaction::commitNote(const QByteArray& noteText, bool append, const QByteArray& commit = QByteArray())
 {
     QByteArray branchRef = branch;
     

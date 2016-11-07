@@ -4,7 +4,7 @@
 #include <QString>
 #include <QDebug>
 
-RuleList::RuleList(const QString &filenames) : 
+RuleList::RuleList(const QString& filenames) : 
     filenames(filenames)
 {
     

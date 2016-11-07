@@ -79,7 +79,7 @@ private:
     
     static QString marksFileName(QString name);
     static QString logFileName(QString name);
-    static unsigned long long lastValidMark(QString name);
+    static unsigned long long lastValidMark(const QString& name);
 
     void doCheckpoint();
     void startFastImport();
@@ -104,7 +104,7 @@ private:
 
     /* Optional filter to fix up log messages */
     QProcess filterMsg;
-    QByteArray msgFilter(QByteArray);
+    const QByteArray msgFilter(const QByteArray& msg);
 
     /* starts at 0, and counts up.  */
     unsigned long long last_commit_mark;

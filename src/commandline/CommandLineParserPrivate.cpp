@@ -116,7 +116,7 @@ void CommandLineParserPrivate::addDefinitions(const CommandLineOption* options)
     dirty = true;
 }
 
-void CommandLineParserPrivate::setArgumentDefinition(const char *defs)
+void CommandLineParserPrivate::setArgumentDefinition(const char* defs)
 {
     requiredArguments = 0;
     argumentDefinition = QString::fromLatin1(defs);

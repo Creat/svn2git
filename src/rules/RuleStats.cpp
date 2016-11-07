@@ -39,7 +39,7 @@ void RuleStats::printStats() const
     }
 }
 
-void RuleStats::ruleMatched(const RuleMatch &rule, const int rev)
+void RuleStats::ruleMatched(const RuleMatch& rule, const int rev)
 {
     if(use)
     {
@@ -47,7 +47,7 @@ void RuleStats::ruleMatched(const RuleMatch &rule, const int rev)
     }
 }
 
-void RuleStats::addRule( const RuleMatch &rule)
+void RuleStats::addRule( const RuleMatch& rule)
 {
     if(use)
     {

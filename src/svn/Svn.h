@@ -39,10 +39,10 @@ public:
     Svn(const QString &pathToRepository);
     ~Svn();
 
-    void setMatchRules(const QList<QList<RuleMatch> > &matchRules);
-    void setRepositories(const QHash<QString, GitRepository*> &repositories);
-    void setIdentityMap(const QHash<QByteArray, QByteArray> &identityMap);
-    void setIdentityDomain(const QString &identityDomain);
+    void setMatchRules(const QList<QList<RuleMatch> >& matchRules);
+    void setRepositories(const QHash<QString, GitRepository*>& repositories);
+    void setIdentityMap(const QHash<QByteArray, QByteArray>& identityMap);
+    void setIdentityDomain(const QString& identityDomain);
 
     int youngestRevision();
     bool exportRevision(int revnum);

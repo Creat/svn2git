@@ -31,8 +31,8 @@ public:
     RuleStatsPrivate();
 
     void printStats() const;
-    void ruleMatched(const RuleMatch &rule, const int rev);
-    void addRule(const RuleMatch &rule);
+    void ruleMatched(const RuleMatch& rule, const int rev);
+    void addRule(const RuleMatch& rule);
     
 private:
     

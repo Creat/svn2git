@@ -5,7 +5,7 @@
 #include "FastImportGitRepository.h"
 #include "ForwardingGitRepository.h"
 
-GitRepository* GitRepository::createRepository(const RuleRepository& rule, const QHash<QString, GitRepository*> &repositories)
+GitRepository* GitRepository::createRepository(const RuleRepository& rule, const QHash<QString, GitRepository*>& repositories)
 {
     if (rule.getForwardTo().isEmpty())
     {
@@ -23,7 +23,7 @@ GitRepository* GitRepository::createRepository(const RuleRepository& rule, const
     return new ForwardingGitRepository(rule.getName(), r, rule.getPrefix());
 }
 
-QByteArray GitRepository::formatMetadataMessage(const QByteArray &svnprefix, int revnum, const QByteArray &tag)
+const QByteArray GitRepository::formatMetadataMessage(const QByteArray &svnprefix, int revnum, const QByteArray &tag)
 {
     QByteArray msg = "svn path=" + svnprefix + "; revision=" + QByteArray::number(revnum);
     

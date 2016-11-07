@@ -30,23 +30,23 @@ class GitRepositoryTransaction
         
 public:
         
-    virtual ~GitRepositoryTransaction() {}
+    virtual ~GitRepositoryTransaction();
     virtual void commit() = 0;
 
-    virtual void setAuthor(const QByteArray &author) = 0;
+    virtual void setAuthor(const QByteArray& author) = 0;
     virtual void setDateTime(uint dt) = 0;
-    virtual void setLog(const QByteArray &log) = 0;
+    virtual void setLog(const QByteArray& log) = 0;
 
     virtual void noteCopyFromBranch (const QString &prevbranch, int revFrom) = 0;
 
-    virtual void deleteFile(const QString &path) = 0;
-    virtual QIODevice *addFile(const QString &path, int mode, qint64 length) = 0;
+    virtual void deleteFile(const QString& path) = 0;
+    virtual QIODevice* addFile(const QString& path, int mode, qint64 length) = 0;
 
-    virtual void commitNote(const QByteArray &noteText, bool append, const QByteArray &commit = QByteArray()) = 0;
+    virtual void commitNote(const QByteArray& noteText, bool append, const QByteArray& commit = QByteArray()) = 0;
         
 protected:
        
-    GitRepositoryTransaction() {}
+    GitRepositoryTransaction();
 
 };
 

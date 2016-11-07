@@ -2,7 +2,7 @@
 
 #include "commandline/CommandLineParser.h"
 
-LoggingQProcess::LoggingQProcess(const QString filename) : QProcess(), log() 
+LoggingQProcess::LoggingQProcess(const QString& filename) : QProcess(), log() 
 {
     if(CommandLineParser::instance()->contains("debug-rules"))
     {
@@ -27,7 +27,7 @@ LoggingQProcess::~LoggingQProcess()
     }
 };
 
-qint64 LoggingQProcess::write(const char *data) 
+qint64 LoggingQProcess::write(const char* data) 
 {
     Q_ASSERT(state() == QProcess::Running);
     if(logging) 
@@ -38,7 +38,7 @@ qint64 LoggingQProcess::write(const char *data)
     return QProcess::write(data);
 }
     
-qint64 LoggingQProcess::write(const char *data, qint64 length) 
+qint64 LoggingQProcess::write(const char* data, qint64 length) 
 {
     Q_ASSERT(state() == QProcess::Running);
     if(logging) 
@@ -49,7 +49,7 @@ qint64 LoggingQProcess::write(const char *data, qint64 length)
     return QProcess::write(data, length);
 }
     
-qint64 LoggingQProcess::write(const QByteArray &data) 
+qint64 LoggingQProcess::write(const QByteArray& data) 
 {
     Q_ASSERT(state() == QProcess::Running);
     if(logging) 
@@ -60,25 +60,25 @@ qint64 LoggingQProcess::write(const QByteArray &data)
     return QProcess::write(data);
 }
     
-qint64 LoggingQProcess::writeNoLog(const char *data) 
+qint64 LoggingQProcess::writeNoLog(const char* data) 
 {
     Q_ASSERT(state() == QProcess::Running);
     return QProcess::write(data);
 }
     
-qint64 LoggingQProcess::writeNoLog(const char *data, qint64 length) 
+qint64 LoggingQProcess::writeNoLog(const char* data, qint64 length) 
 {
     Q_ASSERT(state() == QProcess::Running);
     return QProcess::write(data, length);
 }
     
-qint64 LoggingQProcess::writeNoLog(const QByteArray &data) 
+qint64 LoggingQProcess::writeNoLog(const QByteArray& data) 
 {
     Q_ASSERT(state() == QProcess::Running);
     return QProcess::write(data);
 }
     
-bool LoggingQProcess::putChar( char c) 
+bool LoggingQProcess::putChar(char c) 
 {
     Q_ASSERT(state() == QProcess::Running);
     if(logging) 

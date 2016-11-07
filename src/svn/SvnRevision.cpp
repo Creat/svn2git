@@ -224,7 +224,7 @@ int SvnRevision::commit()
     return EXIT_SUCCESS;
 }
 
-int SvnRevision::exportEntry(const char *key, const svn_fs_path_change2_t *change, apr_hash_t *changes)
+int SvnRevision::exportEntry(const char* key, const svn_fs_path_change2_t* change, apr_hash_t* changes)
 {
     AprAutoPool revpool(pool.data());
     QString current = QString::fromUtf8(key);
@@ -375,7 +375,7 @@ int SvnRevision::exportEntry(const char *key, const svn_fs_path_change2_t *chang
     return EXIT_SUCCESS;
 }
 
-int SvnRevision::exportDispatch(const char *key, const svn_fs_path_change2_t *change, const char *path_from, svn_revnum_t rev_from, apr_hash_t *changes, const QString &current, const RuleMatch &rule, const QList<RuleMatch> &matchRules, apr_pool_t *pool)
+int SvnRevision::exportDispatch(const char* key, const svn_fs_path_change2_t* change, const char* path_from, svn_revnum_t rev_from, apr_hash_t* changes, const QString& current, const RuleMatch& rule, const QList<RuleMatch>& matchRules, apr_pool_t* pool)
 {
     //if(ruledebug)
     //  qDebug() << "rev" << revnum << qPrintable(current) << "matched rule:" << rule.lineNumber << "(" << rule.rx.pattern() << ")";
@@ -432,7 +432,7 @@ int SvnRevision::exportDispatch(const char *key, const svn_fs_path_change2_t *ch
     return EXIT_FAILURE;
 }
 
-int SvnRevision::exportInternal(const char *key, const svn_fs_path_change2_t *change, const char *path_from, svn_revnum_t rev_from, const QString &current, const RuleMatch &rule, const QList<RuleMatch> &matchRules)
+int SvnRevision::exportInternal(const char* key, const svn_fs_path_change2_t* change, const char* path_from, svn_revnum_t rev_from, const QString& current, const RuleMatch& rule, const QList<RuleMatch>& matchRules)
 {
     needCommit = true;
     QString svnprefix, repository, effectiveRepository, branch, path;
@@ -683,7 +683,7 @@ int SvnRevision::exportInternal(const char *key, const svn_fs_path_change2_t *ch
     return EXIT_SUCCESS;
 }
 
-int SvnRevision::recurse(const char *path, const svn_fs_path_change2_t *change, const char *path_from, const QList<RuleMatch> &matchRules, svn_revnum_t rev_from, apr_hash_t *changes, apr_pool_t *pool)
+int SvnRevision::recurse(const char* path, const svn_fs_path_change2_t* change, const char* path_from, const QList<RuleMatch>& matchRules, svn_revnum_t rev_from, apr_hash_t* changes, apr_pool_t* pool)
 {
     svn_fs_root_t *fs_root = this->fs_root;
     

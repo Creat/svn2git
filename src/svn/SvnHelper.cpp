@@ -72,7 +72,7 @@ QList<RuleMatch>::ConstIterator SvnHelper::findMatchRule(const QList<RuleMatch>&
     return end;
 }
 
-int SvnHelper::pathMode(svn_fs_root_t *fs_root, const char *pathname, apr_pool_t *pool)
+int SvnHelper::pathMode(svn_fs_root_t* fs_root, const char* pathname, apr_pool_t* pool)
 {
     svn_string_t *propvalue;
     SVN_INT_ERR(svn_fs_node_prop(&propvalue, fs_root, pathname, "svn:executable", pool));
@@ -86,7 +86,7 @@ int SvnHelper::pathMode(svn_fs_root_t *fs_root, const char *pathname, apr_pool_t
     return mode;
 }
 
-svn_error_t* SvnHelper::deviceWrite(void *baton, const char *data, apr_size_t *len)
+svn_error_t* SvnHelper::deviceWrite(void* baton, const char* data, apr_size_t* len)
 {
     QIODevice *device = reinterpret_cast<QIODevice *>(baton);
     device->write(data, *len);
@@ -120,7 +120,7 @@ svn_error_t* SvnHelper::QIODevice_write(void* baton, const char* data, apr_size_
     return SVN_NO_ERROR;
 }
 
-svn_stream_t* SvnHelper::streamForDevice(QIODevice *device, apr_pool_t *pool)
+svn_stream_t* SvnHelper::streamForDevice(QIODevice* device, apr_pool_t* pool)
 {
     svn_stream_t *stream = svn_stream_create(device, pool);
     svn_stream_set_write(stream, QIODevice_write);

@@ -8,7 +8,7 @@
 #include "commandline/CommandLineParser.h"
 #include "FastImportGitRepositoryTransaction.h"
 
-FastImportGitRepository::FastImportGitRepository(const RuleRepository &rule) :
+FastImportGitRepository::FastImportGitRepository(const RuleRepository& rule) :
     name(rule.getName()),
     prefix(rule.getForwardTo()),
     fastImport(name),
@@ -90,7 +90,7 @@ QString FastImportGitRepository::logFileName(QString name)
     return name;
 }
 
-unsigned long long FastImportGitRepository::lastValidMark(QString name)
+unsigned long long FastImportGitRepository::lastValidMark(const QString& name)
 {
     QFile marksfile(name + "/" + marksFileName(name));
     
@@ -157,7 +157,7 @@ unsigned long long FastImportGitRepository::lastValidMark(QString name)
     return prev_mark;
 }
 
-int FastImportGitRepository::setupIncremental(int &cutoff)
+int FastImportGitRepository::setupIncremental(int& cutoff)
 {
     QFile logfile(logFileName(name));
     
@@ -360,7 +360,7 @@ void FastImportGitRepository::reloadBranches()
     }
 }
 
-long long FastImportGitRepository::markFrom(const QString &branchFrom, int branchRevNum, QByteArray &branchFromDesc)
+long long FastImportGitRepository::markFrom(const QString& branchFrom, int branchRevNum, QByteArray& branchFromDesc)
 {
     Branch &brFrom = branches[branchFrom];
     
@@ -401,7 +401,7 @@ long long FastImportGitRepository::markFrom(const QString &branchFrom, int branc
     return brFrom.marks[it - brFrom.commits.begin()];
 }
 
-int FastImportGitRepository::createBranch(const QString &branch, int revnum, const QString &branchFrom, int branchRevNum)
+int FastImportGitRepository::createBranch(const QString& branch, int revnum, const QString& branchFrom, int branchRevNum)
 {
     QByteArray branchFromDesc = "from branch " + branchFrom.toUtf8();
     long long mark = markFrom(branchFrom, branchRevNum, branchFromDesc);
@@ -435,13 +435,13 @@ int FastImportGitRepository::createBranch(const QString &branch, int revnum, con
     return resetBranch(branch, revnum, mark, branchFromRef, branchFromDesc);
 }
 
-int FastImportGitRepository::deleteBranch(const QString &branch, int revnum)
+int FastImportGitRepository::deleteBranch(const QString& branch, int revnum)
 {
     static QByteArray null_sha(40, '0');
     return resetBranch(branch, revnum, 0, null_sha, "delete");
 }
 
-int FastImportGitRepository::resetBranch(const QString &branch, int revnum, unsigned long long mark, const QByteArray &resetTo, const QByteArray &comment)
+int FastImportGitRepository::resetBranch(const QString& branch, int revnum, unsigned long long mark, const QByteArray& resetTo, const QByteArray& comment)
 {
     QByteArray branchRef = branch.toUtf8();
     
@@ -502,7 +502,7 @@ void FastImportGitRepository::commit()
     resetBranches.clear();
 }
 
-GitRepositoryTransaction* FastImportGitRepository::newTransaction(const QString &branch, const QString &svnprefix, int revnum)
+GitRepositoryTransaction* FastImportGitRepository::newTransaction(const QString& branch, const QString& svnprefix, int revnum)
 {
     if (!branches.contains(branch)) 
     {
@@ -529,7 +529,7 @@ GitRepositoryTransaction* FastImportGitRepository::newTransaction(const QString 
     return txn;
 }
 
-void FastImportGitRepository::forgetTransaction(FastImportGitRepositoryTransaction *)
+void FastImportGitRepository::forgetTransaction(FastImportGitRepositoryTransaction* )
 {
     if (!--outstandingTransactions)
     {
@@ -537,7 +537,7 @@ void FastImportGitRepository::forgetTransaction(FastImportGitRepositoryTransacti
     }
 }
 
-void FastImportGitRepository::createAnnotatedTag(const QString &ref, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log)
+void FastImportGitRepository::createAnnotatedTag(const QString& ref, const QString& svnprefix, int revnum, const QByteArray& author, uint dt, const QByteArray& log)
 {
     QString tagName = ref;
     
@@ -648,7 +648,7 @@ void FastImportGitRepository::finalizeTags()
 }
 
 
-QByteArray FastImportGitRepository::msgFilter(QByteArray msg)
+const QByteArray FastImportGitRepository::msgFilter(const QByteArray& msg)
 {
     QByteArray output = msg;
 

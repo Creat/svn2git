@@ -30,8 +30,8 @@ public:
     
     static RuleStats *instance();
     void printStats() const;
-    void ruleMatched(const RuleMatch &rule, const int rev = -1);
-    void addRule( const RuleMatch &rule);
+    void ruleMatched(const RuleMatch& rule, const int rev = -1);
+    void addRule( const RuleMatch& rule);
     static void init();
     ~RuleStats();
 
@@ -39,8 +39,8 @@ private:
     
     RuleStats();
     
-    RuleStatsPrivate * const privateClass;
-    static RuleStats *self;
+    RuleStatsPrivate* const privateClass;
+    static RuleStats* self;
     bool use;
 };
 

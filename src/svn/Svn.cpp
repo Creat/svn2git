@@ -51,22 +51,22 @@ Svn::~Svn()
     delete privateClass;
 }
 
-void Svn::setMatchRules(const QList<QList<RuleMatch> > &allMatchRules)
+void Svn::setMatchRules(const QList<QList<RuleMatch> >& allMatchRules)
 {
     privateClass->allMatchRules = allMatchRules;
 }
 
-void Svn::setRepositories(const QHash<QString, GitRepository*> &repositories)
+void Svn::setRepositories(const QHash<QString, GitRepository*>& repositories)
 {
     privateClass->repositories = repositories;
 }
 
-void Svn::setIdentityMap(const QHash<QByteArray, QByteArray> &identityMap)
+void Svn::setIdentityMap(const QHash<QByteArray, QByteArray>& identityMap)
 {
     privateClass->identities = identityMap;
 }
 
-void Svn::setIdentityDomain(const QString &identityDomain)
+void Svn::setIdentityDomain(const QString& identityDomain)
 {
     privateClass->userdomain = identityDomain;
 }

@@ -54,8 +54,8 @@ public:
 private:
     
     apr_pool_t *pool;
-    AprAutoPool(const AprAutoPool &);
-    AprAutoPool &operator=(const AprAutoPool &);
+    AprAutoPool(const AprAutoPool&);
+    AprAutoPool &operator=(const AprAutoPool&);
 };
 
 #endif

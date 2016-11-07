@@ -12,7 +12,7 @@ class RuleList
     
 public:
     
-  RuleList( const QString &filenames);
+  RuleList( const QString& filenames);
   ~RuleList();
 
   const QList<RuleRepository> getAllRepositories() const;

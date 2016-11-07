@@ -38,11 +38,11 @@ struct CommandLineOption
      * Number 5 Allows the user to either use -f or --format, which is followed by one required argument
      *          and optionally 2 more arguments.
      */
-    const char *specification;
+    const char* specification;
     /**
      * A textual description of the option that will be printed when the user asks for help.
      */
-    const char *description;
+    const char* description;
 };
 
 #endif

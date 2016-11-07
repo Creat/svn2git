@@ -27,7 +27,7 @@
 
 #include "SvnRevision.h"
 
-SvnPrivate::SvnPrivate(const QString &pathToRepository) :
+SvnPrivate::SvnPrivate(const QString& pathToRepository) :
     global_pool(NULL), 
     scratch_pool(NULL)
 {
@@ -51,9 +51,9 @@ int SvnPrivate::youngestRevision()
     return youngest_rev;
 }
 
-int SvnPrivate::openRepository(const QString &pathToRepository)
+int SvnPrivate::openRepository(const QString& pathToRepository)
 {
-    svn_repos_t *repos;
+    svn_repos_t* repos;
     QString path = pathToRepository;
     
     while (path.endsWith('/')) // no trailing slash allowed

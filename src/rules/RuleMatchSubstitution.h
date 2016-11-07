@@ -28,7 +28,7 @@ class  RuleMatchSubstitution
 public:
     
     bool isValid();
-    QString& apply(QString &string);
+    QString& apply(QString& string);
     
     QRegExp pattern;
     QString replacement;

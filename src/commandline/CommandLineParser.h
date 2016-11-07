@@ -37,14 +37,14 @@ class CommandLineParser
     
 public:
     
-    static void init(int argc, char *argv[]);
+    static void init(int argc, char* argv[]);
     static void addOptionDefinitions(const CommandLineOption* definitions);
-    static void setArgumentDefinition(const char *definition);
-    static CommandLineParser *instance();
+    static void setArgumentDefinition(const char* definition);
+    static CommandLineParser* instance();
 
     ~CommandLineParser();
 
-    void usage(const QString &name, const QString &argumentDescription = QString());
+    void usage(const QString& name, const QString& argumentDescription = QString());
 
     /// return the options that the user passed
     QStringList options() const;
@@ -54,7 +54,7 @@ public:
      * "--expert 10".  Calling contains("expert") will return true.
      * @see optionArgument()
      */
-    bool contains(const QString & key) const;
+    bool contains(const QString& key) const;
 
     /// returns the list of items that are not options, note that the first one is the name of the command called
     QStringList arguments() const;
@@ -68,14 +68,14 @@ public:
      * "--expert 10".  Calling optionArgument("expert") will return a string "10"
      * @see contains()
      */
-    QString optionArgument(const QString &optionName, const QString &defaultValue = QString()) const;
-    QStringList optionArguments(const QString &optionName) const;
+    QString optionArgument(const QString& optionName, const QString& defaultValue = QString()) const;
+    QStringList optionArguments(const QString& optionName) const;
 
     QStringList parseErrors() const;
 
 private:
     
-    CommandLineParser(int argc, char **argv);
+    CommandLineParser(int argc, char** argv);
     
     CommandLineParserPrivate* const d;
     

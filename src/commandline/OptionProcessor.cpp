@@ -22,7 +22,7 @@
 #include "OptionDefinition.h"
 #include "CommandLineParserPrivate.h"
 
-OptionProcessor::OptionProcessor(CommandLineParserPrivate *d) : 
+OptionProcessor::OptionProcessor(CommandLineParserPrivate* d) : 
     clp(d) 
 { 
 }

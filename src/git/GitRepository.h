@@ -40,17 +40,17 @@ public:
     virtual ~GitRepository() {};
 
     virtual void reloadBranches() = 0;
-    virtual int createBranch(const QString &branch, int revnum, const QString &branchFrom, int revFrom) = 0;
-    virtual int deleteBranch(const QString &branch, int revnum) = 0;
-    virtual GitRepositoryTransaction *newTransaction(const QString &branch, const QString &svnprefix, int revnum) = 0;
+    virtual int createBranch(const QString& branch, int revnum, const QString& branchFrom, int revFrom) = 0;
+    virtual int deleteBranch(const QString& branch, int revnum) = 0;
+    virtual GitRepositoryTransaction *newTransaction(const QString& branch, const QString& svnprefix, int revnum) = 0;
 
-    virtual void createAnnotatedTag(const QString &name, const QString &svnprefix, int revnum, const QByteArray &author, uint dt, const QByteArray &log) = 0;
+    virtual void createAnnotatedTag(const QString& name, const QString& svnprefix, int revnum, const QByteArray& author, uint dt, const QByteArray &log) = 0;
     
     virtual void close() = 0;
     virtual void finalizeTags() = 0;
     virtual void commit() = 0;
 
-    static QByteArray formatMetadataMessage(const QByteArray &svnprefix, int revnum, const QByteArray &tag = QByteArray());
+    static const QByteArray formatMetadataMessage(const QByteArray& svnprefix, int revnum, const QByteArray& tag = QByteArray());
 
     virtual bool branchExists(const QString& branch) const = 0;
     virtual const QByteArray branchNote(const QString& branch) const = 0;
