@@ -7,7 +7,7 @@ set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/"
 find_package( APR REQUIRED )
 find_package( Git REQUIRED )
 find_package( Svn REQUIRED )
-find_package( Qt4 4.8.7 REQUIRED QtCore )
+find_package( Qt4 REQUIRED QtCore )
 
 add_subdirectory( src )
 

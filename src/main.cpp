@@ -400,10 +400,10 @@ int main(int argc, char **argv)
     foreach (GitRepository* repo, repositories) 
     {
         repo->finalizeTags();
+	repo->close();
         delete repo;
     }
 	
-	repo->Close();
     
     RuleStats::instance()->printStats();
     return errors ? EXIT_FAILURE : EXIT_SUCCESS;
