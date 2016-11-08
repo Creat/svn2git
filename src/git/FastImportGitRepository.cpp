@@ -275,11 +275,9 @@ void FastImportGitRepository::restoreLog()
 
 void FastImportGitRepository::doCheckpoint()
 {
-    qDebug() << "checkpoint!, marks file trunkated" << endl;
+    qDebug() << "checkpoint!, marks file trunkated";
     fastImport.write("checkpoint\n");
     fastImport.waitForBytesWritten(-1);
-    
-    qDebug() << "checkpoint done!" << endl;
 }
 
 void FastImportGitRepository::closeFastImport()
@@ -292,15 +290,18 @@ void FastImportGitRepository::closeFastImport()
         fastImport.write("done\n");
         fastImport.closeWriteChannel();
         
-        // Wait at least one more minute for closure.
-        if (!fastImport.waitForFinished(60000))
+        if (!fastImport.waitForFinished(-1))
         {
             fastImport.terminate();
             
-            if (!fastImport.waitForFinished(30000))
+            if (!fastImport.waitForFinished(2000))
             {
                 qWarning() << "WARN: git-fast-import for repository" << name << "did not die";
             }
+        }
+        else
+        {
+            qWarning() << "WARN: git-fast-import process for repository" << name << "did not close properly";
         }
     }
     
