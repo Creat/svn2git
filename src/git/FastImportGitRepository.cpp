@@ -292,16 +292,14 @@ void FastImportGitRepository::closeFastImport()
         
         if (!fastImport.waitForFinished(-1))
         {
+            qWarning() << "WARN: git-fast-import process for repository" << name << "did not close willingly. Terminating process by force.";
+            
             fastImport.terminate();
             
             if (!fastImport.waitForFinished(2000))
             {
                 qWarning() << "WARN: git-fast-import for repository" << name << "did not die";
             }
-        }
-        else
-        {
-            qWarning() << "WARN: git-fast-import process for repository" << name << "did not close properly";
         }
     }
     
